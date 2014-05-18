@@ -54,28 +54,28 @@ The FlashMessage-ViewHelper that ships with Fluid is fine, but the rendered Flas
 the example Fluid-Snippet below by putting it in a partial within your own package (Note: At the moment, it's not
 possible to access partials from within another package directly)::
 
-	<f:flashMessages as="flashMessages">
-		<f:for each="{flashMessages}" as="flashMessage">
-			<f:if condition="{flashMessage.severity} == 'OK'">
-				<div class="alert alert-success">
-			</f:if>
-			<f:if condition="{flashMessage.severity} == 'Notice'">
-				<div class="alert alert-notice">
-			</f:if>
-			<f:if condition="{flashMessage.severity} == 'Warning'">
-				<div class="alert alert-warning">
-			</f:if>
-			<f:if condition="{flashMessage.severity} == 'Error'">
-				<div class="alert alert-error">
-			</f:if>
-			<a class="close" data-dismiss="alert" href="#">×</a>
-			<f:if condition="{flashMessage.title}">
-				<h4 class="alert-heading">{flashMessage.title}</h4>
-			</f:if>
-				{flashMessage}
-			</div>
-		</f:for>
-	</f:flashMessages>
+  <f:flashMessages as="flashMessages">
+    <f:for each="{flashMessages}" as="flashMessage">
+      <f:if condition="{0: flashMessage.severity} == {0: 'OK'}">
+        <div class="alert alert-success alert-dismissable">
+      </f:if>
+      <f:if condition="{0: flashMessage.severity} == {0: 'Notice'}">
+        <div class="alert alert-notice alert-dismissable">
+      </f:if>
+      <f:if condition="{0: flashMessage.severity} == {0: 'Warning'}">
+        <div class="alert alert-warning alert-dismissable">
+      </f:if>
+      <f:if condition="{0: flashMessage.severity} == {0: 'Error'}">
+        <div class="alert alert-danger alert-dismissable">
+      </f:if>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <f:if condition="{flashMessage.title}">
+          <strong>{flashMessage.title}</strong>
+        </f:if>
+        {flashMessage}
+      </div>
+    </f:for>
+  </f:flashMessages>
 
 Given you put the above code to Resources/Private/Partials/FlashMessages.html within your package, you can access
 it in your template or layout with the following line::
@@ -101,7 +101,8 @@ First you have to define your menu items in your controller and hand that array 
 			'items' => array(
 				array(
 					'label' => 'Show projects',
-					'href' => $this->uriBuilder->uriFor('index', array(), 'Project')
+					'href' => $this->uriBuilder->uriFor('index', array(), 'Project'),
+					'active' => TRUE
 				),
 				array(
 					'divider' => TRUE
@@ -128,8 +129,9 @@ If your menu items should show a nice icon next to them, you can use the Bootstr
 	$navigationArray = array(
 		'id' => 'navProjects',
 		'label' => 'Projects',
-		'iconClass' => 'icon-folder-open',
-		'invertIcon' => TRUE
+		'iconClass' => 'glyphicon-folder-open',
+		'invertIcon' => TRUE,
+		'active' => FALSE
 	);
 
 You can find a list of all available icons and their class name at http://twitter.github.com/bootstrap/base-css.html#icons

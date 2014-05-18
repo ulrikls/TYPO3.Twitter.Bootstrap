@@ -1,7 +1,7 @@
 {namespace bootstrap=TYPO3\Twitter\Bootstrap\ViewHelpers}
 <f:if condition="{item.items}">
 	<f:then>
-		<li class="dropdown" id="{item.id}">
+		<li class="dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="{item.href}">
 				<f:if condition="{item.iconClass}">
 					<i class="{item.iconClass} {f:if(condition: item.invertIcon, then: 'icon-white')}">&nbsp;</i>
@@ -12,10 +12,10 @@
 		</li>
 	</f:then>
 	<f:else>
-		<li id="{item.id}">
+		<li class="{f:if(condition: item.active, then: 'active')}">
 			<a href="{item.href}">
 				<f:if condition="{item.iconClass}">
-					<i class="{item.iconClass} {f:if(condition: item.invertIcon, then: 'icon-white')}">&nbsp;</i>
+					<span class="glyphicon {item.iconClass} {f:if(condition: item.invertIcon, then: 'icon-white')}"></span>
 				</f:if>
 				{item.label -> f:format.htmlentitiesDecode()}
 			</a>
