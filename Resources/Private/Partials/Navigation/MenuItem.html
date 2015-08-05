@@ -13,7 +13,7 @@
 	</f:then>
 	<f:else>
 		<li class="{f:if(condition: item.active, then: 'active')}">
-			<a href="{item.href}">
+			<a href="{item.href}" {f:if(condition: item.accesskey, then: 'accesskey="{item.accesskey}"')}>
 				<f:if condition="{item.iconClass}">
 					<span class="glyphicon {item.iconClass} {f:if(condition: item.invertIcon, then: 'icon-white')}"></span>
 				</f:if>
